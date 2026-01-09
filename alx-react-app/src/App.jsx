@@ -2,13 +2,19 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import WelcomeMessage from './components/WelcomeMessage'  // ✅ Added import
+import WelcomeMessage from './components/WelcomeMessage'  // ✅ Existing import
+
+// ✅ Step 3: Import new components
+import Header from './components/Header'
+import MainContent from './components/MainContent'
+import Footer from './components/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      {/* Logo Section */}
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
@@ -18,9 +24,15 @@ function App() {
         </a>
       </div>
 
-      {/* ✅ Insert WelcomeMessage component */}
+      {/* WelcomeMessage Component */}
       <WelcomeMessage />
 
+      {/* ✅ Step 4: Add new components */}
+      <Header />
+      <MainContent />
+      <Footer />
+
+      {/* Counter Card */}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -30,6 +42,7 @@ function App() {
         </p>
       </div>
 
+      {/* Footer Text */}
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
