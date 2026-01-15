@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import UserContext from './UserContext'; // Adjust path to '../UserContext' if in components folder
+import UserContext from './UserContext';
 
-function UserDetails() { // Change to UserProfile for the other file
+function UserProfile() {
   const userData = useContext(UserContext);
 
   return (
@@ -12,4 +12,4 @@ function UserDetails() { // Change to UserProfile for the other file
   );
 }
 
-export default UserDetails; // Change to UserProfile for the other file
+export default UserProfile;
