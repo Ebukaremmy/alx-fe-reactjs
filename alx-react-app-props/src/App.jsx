@@ -1,13 +1,10 @@
-import ProfilePage from './ProfilePage';
-import UserContext from './UserContext'; // Ensure this path is correct
+import UserProfile from "./UserProfile";
+import UserContext from "./UserContext";
 
 function App() {
-  const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
-
   return (
-    /* The value MUST be the userData object */
-    <UserContext.Provider value={userData}>
-      <ProfilePage />
+    <UserContext.Provider value={{ name: "John Doe", age: 25 }}>
+      <UserProfile />
     </UserContext.Provider>
   );
 }
