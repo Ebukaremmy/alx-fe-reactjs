@@ -5,7 +5,6 @@ function App() {
   const userData = { name: "Jane Doe", email: "jane.doe@example.com" };
 
   return (
-    /* Wrap the component and pass userData as the value */
     <UserContext.Provider value={userData}>
       <ProfilePage />
     </UserContext.Provider>
