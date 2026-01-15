@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import UserContext from './UserContext';
 
 function UserDetails() {
-  // Use the useContext hook to get the data
+  // Consume the context directly
   const userData = useContext(UserContext);
 
   return (
