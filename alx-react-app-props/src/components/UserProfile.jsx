@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import UserContext from '../UserContext';
+import UserContext from '../UserContext'; // Moving up from components/ to src/
 
 function UserProfile() {
-  // Grab the data from the 'middle table' (Context)
+  // Access the context directly
   const userData = useContext(UserContext);
 
   return (
