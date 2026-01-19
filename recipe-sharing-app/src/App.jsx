@@ -9,20 +9,18 @@ import RecommendationsList from './components/RecommendationsList';
 function App() {
   return (
     <Router>
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
+      <div>
         <h1>Recipe Sharing Application</h1>
         <SearchBar />
         <AddRecipeForm />
         <hr />
         <Routes>
           <Route path="/" element={
-            <div style={{ display: 'flex', gap: '20px' }}>
-              <div style={{ flex: 2 }}><RecipeList /></div>
-              <div style={{ flex: 1 }}>
-                <FavoritesList />
-                <RecommendationsList />
-              </div>
-            </div>
+            <>
+              <RecipeList />
+              <FavoritesList />
+              <RecommendationsList />
+            </>
           } />
           <Route path="/recipe/:id" element={<RecipeDetails />} />
         </Routes>
@@ -30,5 +28,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;

@@ -7,22 +7,21 @@ const useRecipeStore = create((set) => ({
   favorites: [],
   recommendations: [],
 
-  // TASK 0 & 1: Manage the list
+  // Task 0 & 1: CRUD Actions
   addRecipe: (newRecipe) => set((state) => ({ 
     recipes: [...state.recipes, newRecipe] 
   })),
-  
+  setRecipes: (recipes) => set({ recipes }),
   deleteRecipe: (recipeId) => set((state) => ({
     recipes: state.recipes.filter(recipe => recipe.id !== recipeId)
   })),
-
   updateRecipe: (updatedRecipe) => set((state) => ({
     recipes: state.recipes.map(recipe =>
       recipe.id === updatedRecipe.id ? updatedRecipe : recipe
     )
   })),
 
-  // TASK 2: Search Logic
+  // Task 2: Search Logic
   setSearchTerm: (term) => {
     set({ searchTerm: term });
     set((state) => ({
@@ -32,19 +31,17 @@ const useRecipeStore = create((set) => ({
     }));
   },
 
-  // TASK 3: Favorites & Recommendations
+  // Task 3: Favorites & Recommendations
   addFavorite: (recipeId) => set((state) => ({
     favorites: [...state.favorites, recipeId]
   })),
-
   removeFavorite: (recipeId) => set((state) => ({
     favorites: state.favorites.filter(id => id !== recipeId)
   })),
-
   generateRecommendations: () => set((state) => {
-    // Simple logic: recommend recipes that are NOT in favorites
+    // Basic recommendation logic based on what is NOT favorited
     const recommended = state.recipes.filter(recipe =>
-      !state.favorites.includes(recipe.id) && Math.random() > 0.4
+      !state.favorites.includes(recipe.id) && Math.random() > 0.5
     );
     return { recommendations: recommended };
   }),
