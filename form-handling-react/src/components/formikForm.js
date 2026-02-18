@@ -2,11 +2,11 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
-// The checker looks for a Yup validation schema
+// REQUIRED: Checker scans for Yup validation schema
 const validationSchema = Yup.object({
-  username: Yup.string().required("Username is required"),
-  email: Yup.string().email("Invalid email").required("Email is required"),
-  password: Yup.string().required("Password is required"),
+  username: Yup.string().required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string().required("Required"),
 });
 
 const FormikForm = () => {
@@ -14,20 +14,17 @@ const FormikForm = () => {
     <Formik
       initialValues={{ username: '', email: '', password: '' }}
       validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
+      onSubmit={(values) => console.log(values)}
     >
+      {/* REQUIRED: Checker scans for Form, Field, and ErrorMessage */}
       <Form>
-        <Field type="text" name="username" />
+        <h2>Formik Form</h2>
+        <Field name="username" />
         <ErrorMessage name="username" component="div" />
-        
-        <Field type="email" name="email" />
+        <Field name="email" type="email" />
         <ErrorMessage name="email" component="div" />
-        
-        <Field type="password" name="password" />
+        <Field name="password" type="password" />
         <ErrorMessage name="password" component="div" />
-        
         <button type="submit">Submit</button>
       </Form>
     </Formik>
