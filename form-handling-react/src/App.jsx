@@ -1,18 +1,13 @@
-import RegistrationForm from './components/RegistrationForm';
-import FormikForm from './components/formikForm';
+import RegistrationForm from "./components/RegistrationForm";
+import FormikForm from "./components/FormikForm";
 
 function App() {
   return (
-    <div>
-      <h1>User Registration</h1>
-      {/* Task 0: Controlled Components Form */}
+    <>
       <RegistrationForm />
-      
       <hr />
-      
-      {/* Task 0: Formik Form */}
       <FormikForm />
-    </div>
+    </>
   );
 }
 
