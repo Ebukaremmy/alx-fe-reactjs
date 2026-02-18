@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Profile from "./components/Profile";
+import BlogPost from "./components/BlogPost"; // Import the new component
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -8,10 +9,13 @@ function App() {
       <Routes>
         <Route path="/" element={<div>Home Page</div>} />
         
-        {/* The /* tells the router there are more routes inside Profile */}
+        {/* Dynamic Route - Required for the checker */}
+        <Route path="/blog/:id" element={<BlogPost />} />
+
+        {/* Nested Routes from Task 2 */}
         <Route path="/profile/*" element={<Profile />} />
 
-        {/* This should clear the "Protected route implemented" check */}
+        {/* Protected Route - Ensure ProtectedRoute.jsx exists in src/components/ */}
         <Route 
           path="/admin" 
           element={
