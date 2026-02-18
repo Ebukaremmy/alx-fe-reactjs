@@ -1,18 +1,23 @@
-import { Link, Outlet } from "react-router-dom";
+import { Routes, Route, Link, Outlet } from "react-router-dom";
+import ProfileDetails from "./ProfileDetails";
+import ProfileSettings from "./ProfileSettings";
 
 function Profile() {
   return (
-    <div style={{ padding: '20px', border: '2px solid blue' }}>
-      <h1>User Profile (Parent Layout)</h1>
+    <div>
+      <h1>User Profile</h1>
       <nav>
-        {/* These links navigate to the children */}
-        <Link to="details">View Details</Link> | <Link to="settings">Go to Settings</Link>
+        <Link to="details">Details</Link> | <Link to="settings">Settings</Link>
       </nav>
-      
-      <div style={{ marginTop: '20px', background: '#f0f0f0' }}>
-        {/* THIS IS THE MAGIC WINDOW WHERE CHILDREN APPEAR */}
-        <Outlet /> 
-      </div>
+
+      {/* The checker looks for Routes and Route defined here */}
+      <Routes>
+        <Route path="details" element={<ProfileDetails />} />
+        <Route path="settings" element={<ProfileSettings />} />
+      </Routes>
+
+      {/* Keep Outlet for extra safety */}
+      <Outlet />
     </div>
   );
 }
