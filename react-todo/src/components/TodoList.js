@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 
-const initialTodos = [
-  { id: 1, text: 'Learn React', completed: false },
-  { id: 2, text: 'Build a Todo App', completed: false },
-];
-
 function TodoList() {
-  const [todos, setTodos] = useState(initialTodos);
-  const [newTodo, setNewTodo] = useState('');
+  const [todos, setTodos] = useState([
+    { id: 1, text: 'Learn React', completed: false },
+    { id: 2, text: 'Build a Todo App', completed: false }
+  ]);
+  const [inputValue, setInputValue] = useState('');
 
   const addTodo = (e) => {
     e.preventDefault();
-    if (!newTodo.trim()) return;
-    setTodos([...todos, { id: Date.now(), text: newTodo, completed: false }]);
-    setNewTodo('');
+    if (!inputValue.trim()) return;
+    setTodos([...todos, { id: Date.now(), text: inputValue, completed: false }]);
+    setInputValue('');
   };
 
   const toggleTodo = (id) => {
@@ -30,17 +28,19 @@ function TodoList() {
     <div>
       <h1>Todo List</h1>
       <form onSubmit={addTodo}>
-        <input 
-          type="text" 
-          value={newTodo} 
-          onChange={(e) => setNewTodo(e.target.value)} 
+        <input
+          type="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
           placeholder="Add a new todo"
         />
         <button type="submit">Add Todo</button>
       </form>
       <ul>
         {todos.map(todo => (
-          <li key={todo.id} onClick={() => toggleTodo(todo.id)} style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+          <li key={todo.id} 
+              onClick={() => toggleTodo(todo.id)}
+              style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
             {todo.text}
             <button onClick={(e) => { e.stopPropagation(); deleteTodo(todo.id); }}>Delete</button>
           </li>
