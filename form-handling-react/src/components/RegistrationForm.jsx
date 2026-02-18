@@ -1,71 +1,44 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export default function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: ""
-  });
+const RegistrationForm = () => {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState({});
 
-  const [errors, setErrors] = useState({});
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Basic Validation
+        if (!username || !email || !password) {
+            alert('All fields are required');
+            return;
+        }
+        console.log("Form Submitted:", { username, email, password });
+    };
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+    return (
+        <form onSubmit={handleSubmit}>
+            <input 
+                type="text" 
+                value={username} 
+                onChange={(e) => setUsername(e.target.value)} 
+                placeholder="Username" 
+            />
+            <input 
+                type="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+                placeholder="Email" 
+            />
+            <input 
+                type="password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                placeholder="Password" 
+            />
+            <button type="submit">Register</button>
+        </form>
+    );
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    let newErrors = {};
-
-    if (!formData.username) newErrors.username = "Username is required";
-    if (!formData.email) newErrors.email = "Email is required";
-    if (!formData.password) newErrors.password = "Password is required";
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-      return;
-    }
-
-    console.log("Form Submitted:", formData);
-    alert("Registration Successful!");
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <h2>Controlled Registration Form</h2>
-
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleChange}
-      />
-      <p>{errors.username}</p>
-
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      <p>{errors.email}</p>
-
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-      />
-      <p>{errors.password}</p>
-
-      <button type="submit">Register</button>
-    </form>
-  );
-}
+export default RegistrationForm;
