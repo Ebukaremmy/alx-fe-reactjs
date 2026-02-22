@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import TodoList from './TodoList';
+import TodoList from '../components/TodoList';
 
 describe("TodoList component", () => {
   test("renders initial todos", () => {
@@ -12,11 +12,9 @@ describe("TodoList component", () => {
 
   test("adds a new todo", () => {
     render(<TodoList />);
-    // Note: Ensure your TodoList.jsx placeholder matches "Add new todo"
     fireEvent.change(screen.getByPlaceholderText("Add new todo"), {
       target: { value: "Test Todo" },
     });
-    // Note: Ensure your TodoList.jsx button text matches "Add"
     fireEvent.click(screen.getByText("Add"));
     expect(screen.getByText("Test Todo")).toBeInTheDocument();
   });
